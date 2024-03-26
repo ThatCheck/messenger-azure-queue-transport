@@ -185,4 +185,8 @@ class Queue
     {
         return unserialize(base64_decode($message));
     }
+
+    public function setupQueue(){
+        $this->client->createQueue($this->getOption('queue_name'));
+    }
 }
