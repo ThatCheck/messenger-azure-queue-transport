@@ -138,6 +138,10 @@ class Queue
     {
         $connection = 'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s';
 
+        $queueEndpoint = getenv('AZURE_QUEUE_ENDPOINT');
+        if($queueEndpoint !== false && is_string($queueEndpoint)){
+            $connection .= ';QueueEndpoint='.$queueEndpoint;
+        }
         $name = rawurldecode(parse_url($dsn, PHP_URL_USER));
         $key = rawurldecode(parse_url($dsn, PHP_URL_PASS));
 
